@@ -4,11 +4,11 @@
 
 # terminal emulator
 super + Return
-	termite
+	kitty
 
 # program launcher
 super + @space
-	dmenu_run
+	~/.config/polybar/scripts/launcher.sh &
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -45,6 +45,9 @@ super + g
 # set the window state
 super + {t,shift + t,s,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+super + shift + f
+	bscp node -t floating
 
 # set the node flags
 super + ctrl + {m,x,y,z}
@@ -119,3 +122,31 @@ super + alt + shift + {h,j,k,l}
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+#
+# Session
+#
+
+super + twosuperior
+	~/.config/polybar/scripts/powermenu.sh &
+
+#
+# XF86 Functions
+#
+
+XF86AudioRaiseVolume
+	pactl set-sink-volume @DEFAULT_SINK@ +2%
+
+XF86AudioLowerVolume
+	pactl set-sink-volume @DEFAULT_SINK@ -2%
+
+XF86AudioStop
+	pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+XF86MonBrightnessUp
+	brightnessctl -m set -m +2%
+
+XF86MonBrightnessDown
+	brightnessctl -m set -m 2%-
+
+
