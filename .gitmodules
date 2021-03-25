@@ -1,3 +1,6 @@
 [submodule "zsh/zprezto"]
 	path = zsh/zprezto
 	url = https://github.com/sorin-ionescu/prezto.git
+[submodule "extra/spicetify-themes"]
+	path = extra/spicetify-themes
+	url = https://github.com/morpheusthewhite/spicetify-themes.git
