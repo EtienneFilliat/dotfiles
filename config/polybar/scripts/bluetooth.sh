@@ -299,7 +299,7 @@ show_menu() {
 }
 
 # Rofi command to pipe into, can add any options here
-rofi_command="rofi -dmenu -no-fixed-num-lines -theme ~/.config/polybar/scripts/rofi/launcher.rasi -i -p"
+rofi_command="rofi -dmenu -no-fixed-num-lines -theme ~/.config/rofi-glish/launcher-bis.rasi -i -p"
 
 case "$1" in
     --status)
