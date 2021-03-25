@@ -32,6 +32,11 @@ power_on() {
 # Toggles power state
 toggle_power() {
     if power_on; then
+
+	# Reset volume via pulseaudio to prevent embarassing moments of music
+	# blasting through the internal speakers :wink:
+        pactl set-sink-volume @DEFAULT_SINK@ 0
+
         bluetoothctl power off
         show_menu
     else
