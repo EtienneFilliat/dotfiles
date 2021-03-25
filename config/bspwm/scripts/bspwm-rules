@@ -59,24 +59,7 @@ spotify() {
 }
 
 case $instance.$class in
-	(*.Chromium) chromium;;
-	(*.Emacs) emacs;;
-	(*.Gimp) gimp;;
-	(*.Gitk) gitk;;
-	(*.Pidgin) pidgin;;
-	(*.Pinentry-gtk-2) pinentry_gtk_2;;
-	(*.Signal) signal;;
 	(*.Spotify) spotify;;
-	(*.TelegramDesktop) telegram_desktop;;
-	(*.XCalc) xcalc;;
-	(*.Xmessage) xmessage;;
-	(*.[Ff]irefox) firefox;;
-	(*.mpv) mpv;;
-	(*org.remmina.Remmina) remmina;;
-	([lL]ibre[oO]ffice*) libreoffice;;
-	(jetbrains-idea.jetbrains-idea) jetbrains_idea;;
-	(stj*.st) stj1;;
-	(weechatw.*) weechat;;
 	(.)
 		case $(ps -p "$(xdo pid "$id")" -o comm= 2>/dev/null) in
 			(spotify) spotify;;
