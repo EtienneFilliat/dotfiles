@@ -1,0 +1,28 @@
+#
+# Dotbot configuration file
+#
+
+---
+
+- defaults:
+    link:
+      relink: true
+
+- clean: ['~']
+
+- link:
+    ~/.config/:
+      create: true
+      glob: true
+      path: config/*
+    ~/.xinitrc:
+    ~/.Xresources:
+    ~/.zsh:
+    ~/.zshenv:
+    ~/.zsh/.zlogin: ~/.zsh/zlogin
+    ~/.zsh/.zpreztorc: ~/.zsh/zpreztorc
+    ~/.zsh/.zprofile: ~/.zsh/zprofile
+    ~/.zsh/.zshrc: ~/.zsh/zshrc
+
+- shell:
+    - [git submodule update --init --recursive, Updating git submodules]

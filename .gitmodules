@@ -4,3 +4,7 @@
 [submodule "extra/spicetify-themes"]
 	path = extra/spicetify-themes
 	url = https://github.com/morpheusthewhite/spicetify-themes.git
+[submodule "dotbot"]
+	path = dotbot
+	url = https://github.com/anishathalye/dotbot
+	ignore = dirty
