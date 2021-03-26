@@ -1,0 +1,33 @@
+#
+# Spiki Zsh dotfile
+# zpreztorc: prezto framework configuration
+#
+
+# Color output (auto set to 'no' on dumb terminals).
+zstyle ':prezto:*:*' color 'yes'
+
+# Set the Prezto modules to load (browse modules).
+# The order matters.
+zstyle ':prezto:load' pmodule \
+  'environment' \
+  'terminal' \
+  'history' \
+  'spectrum' \
+  'git' \
+  'utility' \
+  'archive' \
+  'completion' \
+  'history-substring-search' \
+  'autosuggestions' \
+  'prompt'
+
+zstyle ':prezto:module:autosuggestions:color' found 'fg=8'
+
+# Auto set to 'off' on dumb terminals.
+zstyle ':prezto:module:prompt' theme 'sorin'
+
+# Auto set the tab and window titles.
+zstyle ':prezto:module:terminal' auto-title 'no'
+
+# Set case sensivity for all completions and history lookups
+#zstyle ':prezto:*:*' case-sensitive 'yes'
