@@ -23,6 +23,10 @@
     ~/.zsh/.zpreztorc: ~/.zsh/zpreztorc
     ~/.zsh/.zprofile: ~/.zsh/zprofile
     ~/.zsh/.zshrc: ~/.zsh/zshrc
+    ~/.local/share/fonts:
+      create: true
+      glob: true
+      path: extra/fonts/*
 
 - shell:
     - [git submodule update --init --recursive, Updating git submodules]
