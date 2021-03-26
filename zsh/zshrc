@@ -12,4 +12,4 @@ done
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 
 # Import colorscheme from 'wal' asynchronously
-(cat ~/.cache/wal/sequences &)
+(cat ~/.config/extra/sequences &)
