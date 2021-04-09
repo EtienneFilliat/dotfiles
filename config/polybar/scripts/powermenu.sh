@@ -52,7 +52,7 @@ case $chosen in
         fi
         ;;
     $lock)
-		betterlockscreen --lock blur
+		betterlockscreen --lock #blur
         ;;
     $suspend)
 		ans=$(confirm_exit &)

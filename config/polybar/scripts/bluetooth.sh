@@ -184,6 +184,15 @@ toggle_trust() {
     fi
 }
 
+codec_on() {
+	echo "Reset Codec to A2DP"
+}
+
+toggle_A2DP() {
+	index=$(pacmd list-cards | grep "<bluez_card" -B 1 | awk '/index/{print $2}')
+	pacmd set-card-profile $index a2dp_sink
+}
+
 # Prints a short string with the current bluetooth status
 # Useful for status bars like polybar, etc.
 print_status() {
@@ -267,9 +276,10 @@ show_menu() {
         scan=$(scan_on)
         pairable=$(pairable_on)
         discoverable=$(discoverable_on)
+	codec=$(codec_on)
 
         # Options passed to rofi
-        options="$devices\n$divider\n$power\n$scan\n$pairable\n$discoverable\nExit"
+        options="$devices\n$divider\n$power\n$scan\n$pairable\n$discoverable\n$codec\nExit"
     else
         power="Power: off"
         options="$power\nExit"
@@ -295,6 +305,10 @@ show_menu() {
         $pairable)
             toggle_pairable
             ;;
+	$codec)
+	    #pacmd set-card-profile 3 a2dp_sink
+            toggle_A2DP
+	    ;;
         *)
             device=$(bluetoothctl devices | grep "$chosen")
             # Open a submenu if a device is selected
