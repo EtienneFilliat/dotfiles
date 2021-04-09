@@ -58,8 +58,14 @@ spotify() {
 	border=off;
 }
 
+teams() {
+	desktop=^6;
+	border=off;
+}
+
 case $instance.$class in
 	(*.Spotify) spotify;;
+#	(*.Teams) teams;;
 	(.)
 		case $(ps -p "$(xdo pid "$id")" -o comm= 2>/dev/null) in
 			(spotify) spotify;;

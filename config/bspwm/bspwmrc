@@ -4,7 +4,20 @@
 # Monitor
 ########################################
 
-bspc monitor -d 1 2 3 4 5 6 7 8 9
+# set up the two monitors for bspwm
+external_monitor=$(xrandr --query | grep 'DP-1')
+if [[ ! $external_monitor = *disconnected* ]]; then
+    echo "Monitor connected"
+    xrandr --output eDP-1 --primary --mode 1920x1080 --rotate normal --output DP-1 --mode 1920x1080 --rotate normal --right-of eDP-1
+    bspc monitor eDP-1 -d 1 2 3 4 5
+    bspc monitor DP-1 -d 6 7 8 9 0
+else
+    echo "Monitor disconnected"
+    xrandr --output eDP-1 --primary --mode 1920x1080 --rotate normal --output DP-1 --off
+    bspc monitor eDP-1 -d 1 2 3 4 5 6 7 8 9 0
+fi
+
+#bspc wm -O eDP-1 DP-1
 
 ########################################
 # Design
@@ -36,14 +49,16 @@ bspc config external_rules_command ${Home}.config/bspwm/scripts/bspwm-rules
 bspc rule -a Chromium desktop='^2' border=off
 bspc rule -a TelegramDesktop desktop='^5' border=off
 bspc rule -a Discord desktop='^5' border=off
-
+bspc rule -a "Microsoft Teams - Preview" desktop='^6' border=off
+bspc rule -a code-oss border=off
 
 ########################################
 # Startup
 ########################################
 
 # Launch compositor
-picom &
+killall picom
+picom --experimental-backend &
 
 # Launch dunst
 /usr/bin/dunst &
