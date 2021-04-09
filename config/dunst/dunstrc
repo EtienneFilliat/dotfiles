@@ -428,4 +428,8 @@
 #    appname = "some_volume_notifiers"
 #    set_stack_tag = "volume"
 #
+[log_notifs]
+    appname = *
+    script = ~/.config/dunst/scripts/dunst-pretty-logger.sh
+
 # vim: ft=cfg
