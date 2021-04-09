@@ -77,6 +77,18 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
 	brightnessctl -m set -m 2%-
 
+# My config is specific for Spotify
+# From https://fabianlee.org/2016/05/25/ubuntu-enabling-media-keys-for-spotify/
+
+XF86AudioPlay
+	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+
+XF86AudioPrev
+	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+
+XF86AudioNext
+	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+
 #
 # Other
 #
