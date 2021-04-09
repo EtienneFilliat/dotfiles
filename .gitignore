@@ -1,3 +1,4 @@
 config/spicetify/Backup/
 config/spicetify/Extracted/
 config/spicetify/Themes/
+zsh/.*
