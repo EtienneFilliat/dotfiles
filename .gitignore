@@ -2,3 +2,5 @@ config/spicetify/Backup/
 config/spicetify/Extracted/
 config/spicetify/Themes/
 zsh/.*
+zsh/history
+zsh/aliases/digipost.zsh
