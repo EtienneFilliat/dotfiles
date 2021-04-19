@@ -184,13 +184,26 @@ toggle_trust() {
     fi
 }
 
-codec_on() {
-	echo "Reset Codec to A2DP"
+proto_on() {
+	active_proto=$(pacmd list-cards | grep "index: $index" -A 19 | awk '/active profile:/{print $3}')
+        if [[ $active_proto == "<a2dp_sink>" ]]; then
+		target_proto="HSP/HFP"
+	else
+		target_proto="A2DP"
+	fi
+	echo "Switch to $target_proto"
 }
 
-toggle_A2DP() {
+toggle_proto() {
 	index=$(pacmd list-cards | grep "<bluez_card" -B 1 | awk '/index/{print $2}')
-	pacmd set-card-profile $index a2dp_sink
+	active_proto=$(pacmd list-cards | grep "index: $index" -A 19 | awk '/active profile:/{print $3}')
+	if [[ $active_proto == "<a2dp_sink>" ]]; then
+		# Switch to HSP/HFP
+		pacmd set-card-profile $index headset_head_unit
+	else
+		# Switch to A2DP
+		pacmd set-card-profile $index a2dp_sink
+	fi
 }
 
 # Prints a short string with the current bluetooth status
@@ -276,7 +289,7 @@ show_menu() {
         scan=$(scan_on)
         pairable=$(pairable_on)
         discoverable=$(discoverable_on)
-	codec=$(codec_on)
+	codec=$(proto_on)
 
         # Options passed to rofi
         options="$devices\n$divider\n$power\n$scan\n$pairable\n$discoverable\n$codec\nExit"
@@ -307,7 +320,7 @@ show_menu() {
             ;;
 	$codec)
 	    #pacmd set-card-profile 3 a2dp_sink
-            toggle_A2DP
+            toggle_proto
 	    ;;
         *)
             device=$(bluetoothctl devices | grep "$chosen")
