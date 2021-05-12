@@ -5,3 +5,8 @@
 # Taskbook
 
 alias tb='taskbook'
+
+alias ..='cd ..'
+
+export WORKON_HOME=~/.virtualenvs
+source /usr/bin/virtualenvwrapper.sh
