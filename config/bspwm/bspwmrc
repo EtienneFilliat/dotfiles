@@ -56,9 +56,11 @@ bspc rule -a code-oss border=off
 # Startup
 ########################################
 
+# Launch Polybar
+${HOME}/.config/polybar/launch.sh
+
 # Launch compositor
-killall picom
-picom --experimental-backend &
+killall -qw picom; picom --experimental-backend &
 
 # Launch dunst
 /usr/bin/dunst &
@@ -68,9 +70,6 @@ xsetroot -cursor_name left_ptr &
 
 # Setup wallpaper
 feh --no-fehbg --bg-scale ${HOME}/.config/bspwm/wallpapers/Flat-BSPWM.png
-
-# Launch Polybar
-${HOME}/.config/polybar/launch.sh
 
 # Force reload sxhkd (started in .xinitrc)
 pkill -USR1 -x sxhkd
