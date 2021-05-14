@@ -2,7 +2,7 @@
 
 
 # Find Vpn name
-vpn="$(nmcli -t -f name,type connection show --order name --active 2>/dev/null | grep 'vpn\|tun' | head -1 | cut -d ':' -f 1)"
+vpn="$(nmcli -t -f name,type connection show --order name --active 2>/dev/null | grep 'vpn\|tun\|wireguard' | head -1 | cut -d ':' -f 1)"
 
 
 # Prints the current Vpn Status
