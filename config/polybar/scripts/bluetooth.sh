@@ -33,8 +33,8 @@ power_on() {
 toggle_power() {
     if power_on; then
 
-	# Reset volume via pulseaudio to prevent embarassing moments of music
-	# blasting through the internal speakers :wink:
+        # Reset volume via pulseaudio to prevent embarassing moments of music
+        # blasting through the internal speakers :wink:
         pactl set-sink-volume @DEFAULT_SINK@ 0
 
         bluetoothctl power off
@@ -185,25 +185,25 @@ toggle_trust() {
 }
 
 proto_on() {
-	active_proto=$(pacmd list-cards | grep "index: $index" -A 19 | awk '/active profile:/{print $3}')
-        if [[ $active_proto == "<a2dp_sink>" ]]; then
-		target_proto="HSP/HFP"
-	else
-		target_proto="A2DP"
-	fi
-	echo "Switch to $target_proto"
+    active_proto=$(pacmd list-cards | grep "index: $index" -A 19 | awk '/active profile:/{print $3}')
+    if [[ $active_proto == "<a2dp_sink>" ]]; then
+        target_proto="HSP/HFP"
+    else
+        target_proto="A2DP"
+    fi
+    echo "Switch to $target_proto"
 }
 
 toggle_proto() {
-	index=$(pacmd list-cards | grep "<bluez_card" -B 1 | awk '/index/{print $2}')
-	active_proto=$(pacmd list-cards | grep "index: $index" -A 19 | awk '/active profile:/{print $3}')
-	if [[ $active_proto == "<a2dp_sink>" ]]; then
-		# Switch to HSP/HFP
-		pacmd set-card-profile $index headset_head_unit
-	else
-		# Switch to A2DP
-		pacmd set-card-profile $index a2dp_sink
-	fi
+    index=$(pacmd list-cards | grep "<bluez_card" -B 1 | awk '/index/{print $2}')
+    active_proto=$(pacmd list-cards | grep "index: $index" -A 19 | awk '/active profile:/{print $3}')
+    if [[ $active_proto == "<a2dp_sink>" ]]; then
+        # Switch to HSP/HFP
+        pacmd set-card-profile $index headset_head_unit
+    else
+        # Switch to A2DP
+        pacmd set-card-profile $index a2dp_sink
+    fi
 }
 
 # Prints a short string with the current bluetooth status
@@ -257,21 +257,21 @@ device_menu() {
 
     # Match chosen option to command
     case $chosen in
-        "" | $divider)
-            echo "No option chosen."
-            ;;
-        $connected)
-            toggle_connection $mac
-            ;;
-        $paired)
-            toggle_paired $mac
-            ;;
-        $trusted)
-            toggle_trust $mac
-            ;;
-        $goback)
-            show_menu
-            ;;
+    "" | $divider)
+        echo "No option chosen."
+        ;;
+    $connected)
+        toggle_connection $mac
+        ;;
+    $paired)
+        toggle_paired $mac
+        ;;
+    $trusted)
+        toggle_trust $mac
+        ;;
+    $goback)
+        show_menu
+        ;;
     esac
 }
 
@@ -289,7 +289,7 @@ show_menu() {
         scan=$(scan_on)
         pairable=$(pairable_on)
         discoverable=$(discoverable_on)
-	codec=$(proto_on)
+        codec=$(proto_on)
 
         # Options passed to rofi
         options="$devices\n$divider\n$power\n$scan\n$pairable\n$discoverable\n$codec\nExit"
@@ -303,30 +303,30 @@ show_menu() {
 
     # Match chosen option to command
     case $chosen in
-        "" | $divider)
-            echo "No option chosen."
-            ;;
-        $power)
-            toggle_power
-            ;;
-        $scan)
-            toggle_scan
-            ;;
-        $discoverable)
-            toggle_discoverable
-            ;;
-        $pairable)
-            toggle_pairable
-            ;;
-	$codec)
-	    #pacmd set-card-profile 3 a2dp_sink
-            toggle_proto
-	    ;;
-        *)
-            device=$(bluetoothctl devices | grep "$chosen")
-            # Open a submenu if a device is selected
-            if [[ $device ]]; then device_menu "$device"; fi
-            ;;
+    "" | $divider)
+        echo "No option chosen."
+        ;;
+    $power)
+        toggle_power
+        ;;
+    $scan)
+        toggle_scan
+        ;;
+    $discoverable)
+        toggle_discoverable
+        ;;
+    $pairable)
+        toggle_pairable
+        ;;
+    $codec)
+        #pacmd set-card-profile 3 a2dp_sink
+        toggle_proto
+        ;;
+    *)
+        device=$(bluetoothctl devices | grep "$chosen")
+        # Open a submenu if a device is selected
+        if [[ $device ]]; then device_menu "$device"; fi
+        ;;
     esac
 }
 
@@ -334,10 +334,10 @@ show_menu() {
 rofi_command="rofi -dmenu -no-fixed-num-lines -theme ~/.config/rofi-glish/launcher-bis.rasi -i -p"
 
 case "$1" in
-    --status)
-        print_status
-        ;;
-    *)
-        show_menu
-        ;;
+--status)
+    print_status
+    ;;
+*)
+    show_menu
+    ;;
 esac

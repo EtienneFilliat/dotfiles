@@ -4,3 +4,4 @@ config/spicetify/Themes/
 zsh/.*
 zsh/history
 zsh/aliases/digipost.zsh
+node_modules/
