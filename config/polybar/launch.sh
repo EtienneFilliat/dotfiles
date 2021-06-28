@@ -10,7 +10,14 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 polybar -c ~/.config/polybar/config.ini main &
 
 # set up the two monitors for bspwm
-external_monitor=$(xrandr --query | grep 'DP-1')
+external_monitor=$(xrandr --query | grep -w 'DP-1')
+if [[ $external_monitor = *disconnected* ]]; then
+    external_monitor=$(xrandr --query | grep -w 'DVI-I-2-1')
+fi
+
+# Extract External monitor name for Polybar
+# echo "$(echo $external_monitor | cut -d" " -f1)"
+
 if [[ ! $external_monitor = *disconnected* ]]; then
-    polybar -c ~/.config/polybar/config.ini main_external &
+    MONITOR=$(echo $external_monitor | cut -d" " -f1) polybar -c ~/.config/polybar/config.ini main_external &
 fi
