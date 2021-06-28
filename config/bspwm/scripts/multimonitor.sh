@@ -3,6 +3,11 @@
 # set up the two monitors for bspwm
 # NOTE This is a simplistic approach because I already know the settings I
 # want to apply.
+
+# eDP-1: Integrated screen
+# DP-1: Personal USB-C Hub outputing on HDMI
+# DVI-I-2-1: Work USB-C Hub outputing on HDMI
+
 external_monitor=$(xrandr --query | grep -w 'DP-1')
 if [[ $external_monitor = *disconnected* ]]; then
     external_monitor=$(xrandr --query | grep -w 'DVI-I-2-1')

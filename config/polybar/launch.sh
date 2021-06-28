@@ -6,18 +6,16 @@ killall -q polybar
 # Wait until shutdown
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
-# Launch Polybar, using default config (~/.config/polybar/config)
-polybar -c ~/.config/polybar/config.ini main &
-
-# set up the two monitors for bspwm
-external_monitor=$(xrandr --query | grep -w 'DP-1')
-if [[ $external_monitor = *disconnected* ]]; then
-    external_monitor=$(xrandr --query | grep -w 'DVI-I-2-1')
-fi
-
-# Extract External monitor name for Polybar
-# echo "$(echo $external_monitor | cut -d" " -f1)"
-
-if [[ ! $external_monitor = *disconnected* ]]; then
-    MONITOR=$(echo $external_monitor | cut -d" " -f1) polybar -c ~/.config/polybar/config.ini main_external &
+# From https://github.com/polybar/polybar/issues/763#issuecomment-331604987
+# Querry ALL Available screens
+if type "xrandr"; then
+    for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+        DEFAULT_WIRED_NETWORK_INTERFACE=$(ip route | grep '^default.*enp.*$' | awk '{print $5}' | head -n1) \
+        MONITOR=$m \
+            polybar -c ~/.config/polybar/config.ini main_external &
+    done
+else
+    # Launch Polybar, using default config (~/.config/polybar/config)
+    DEFAULT_WIRED_NETWORK_INTERFACE=$(ip route | grep '^default.*enp.*$' | awk '{print $5}' | head -n1) \
+        polybar -c ~/.config/polybar/config.ini main &
 fi
