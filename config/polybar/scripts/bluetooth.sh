@@ -185,7 +185,7 @@ toggle_trust() {
 }
 
 proto_on() {
-    active_proto=$(pacmd list-cards | grep "index: $index" -A 19 | awk '/active profile:/{print $3}')
+    active_proto=$(pacmd list-cards | grep "index: $index" -A 22 | awk '/active profile:/{print $3}')
     if [[ $active_proto == "<a2dp_sink>" ]]; then
         target_proto="HSP/HFP"
     else
@@ -196,10 +196,10 @@ proto_on() {
 
 toggle_proto() {
     index=$(pacmd list-cards | grep "<bluez_card" -B 1 | awk '/index/{print $2}')
-    active_proto=$(pacmd list-cards | grep "index: $index" -A 19 | awk '/active profile:/{print $3}')
+    active_proto=$(pacmd list-cards | grep "index: $index" -A 22 | awk '/active profile:/{print $3}')
     if [[ $active_proto == "<a2dp_sink>" ]]; then
         # Switch to HSP/HFP
-        pacmd set-card-profile $index headset_head_unit
+        pacmd set-card-profile $index handsfree_head_unit
     else
         # Switch to A2DP
         pacmd set-card-profile $index a2dp_sink

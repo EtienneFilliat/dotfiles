@@ -49,9 +49,12 @@ $reboot)
     fi
     ;;
 $lock)
-    pkill -u "$USER" -USR1 dunst
-    betterlockscreen --lock #blur
-    pkill -u "$USER" -USR2 dunst
+    # killall -qw picom
+    pkill -xu $EUID -USR1 dunst
+    betterlockscreen --lock
+    pkill -xu $EUID -USR2 dunst
+    # if
+    # picom --experimental-backend &
     ;;
 $suspend)
     ans=$(confirm_exit &)

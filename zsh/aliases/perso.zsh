@@ -7,6 +7,7 @@
 alias tb='taskbook'
 
 alias ..='cd ..'
+alias watch='watch --color'
 
 export WORKON_HOME=~/.virtualenvs
 source /usr/bin/virtualenvwrapper.sh

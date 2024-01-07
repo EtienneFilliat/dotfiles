@@ -12,10 +12,11 @@
 # DP-1-3:	Dell Dock VGA Port
 # DP-2:  	Misc Output
 # DP-3:		Physical HDMI Port
-# DVI-I-2-1: 	Work USB-C Hub outputing on HDMI
+# DVI-I-2-1: 	Thinkpad USB-C Hub outputing on HDMI
+# DVI-I-3-2:	Thinkpad USB-C Hub outputing on HDMI
 
 # eDP-1 is the fallback so we dont include it in the POTENTIAL_OUTPUTS
-POTENTIAL_OUTPUTS=('DP-1' 'DP-2' 'DP-3' 'DVI-I-2-1' 'DP-1-3' 'DP-1-1' 'DP-1-2')
+POTENTIAL_OUTPUTS=('DP-1' 'DP-2' 'DP-3' 'DVI-I-2-1' 'DVI-I-3-2' 'DP-1-3' 'DP-1-1' 'DP-1-2')
 EXTERNAL_MONITORS=()
 SCREEN_RESOLUTIONS=()
 

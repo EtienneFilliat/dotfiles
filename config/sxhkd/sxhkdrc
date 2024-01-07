@@ -10,6 +10,10 @@ super + alt + r
 super + alt + q
 	~/.config/sxhkd/scripts/quit-bspwm.sh
 
+# set the window state
+super + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
 # Kill / Close node (q on fr_pc)
 super + {_,shift + }a
 	bspc node -{k,c}
@@ -18,12 +22,16 @@ super + {_,shift + }a
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} ^{1-9,10}
 
-# Cycle windows
-alt + {_, shift + }Tab
-	bspc desktop -f {prev.occupied,next.occupied}
+# Move to the next desktop (intended for mouse)
+ctrl + {right,left}
+	bspc desktop -f {next,prev}
+
+# Go to plast desktop (For a mouse binding)
+#super + alt + o
+#	bspc desktop -f last
 
 # Toggle tile
-super + {_,shift +} t
+super + {right,left}
 	bspc node -t {floating,tiled}
 
 # Rotate tree clockwise/counter clockwise
